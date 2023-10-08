@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const navigate = useNavigate();
 
-  const handleLoginLink = async () => {};
+  const handleRegisterClick = () => {
+    console.log("Registration form data:", formData);
+  };
 
   const [formData, setFormData] = useState({
     username: "",
@@ -21,9 +23,11 @@ export default function LoginPage() {
 
   return (
     <div className="bg-white">
-      <div className="mx-auto my-6 w-1/2 max-w-2xl py-12 sm:py-16 lg:py-20">
+      <div className="w-1/2  mx-auto my-6 max-w-2xl py-12 sm:py-16 lg:py-20">
         <div className="bg-white shadow-lg px-4 py-5 sm:rounded-lg sm:p-6">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">Log In</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            Register
+          </h2>
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6">
               <label
@@ -65,10 +69,10 @@ export default function LoginPage() {
           <div className="mt-6">
             <button
               type="button"
-              onClick={handleLoginLink}
+              onClick={handleRegisterClick}
               className="w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Log In
+              Register
             </button>
           </div>
         </div>
