@@ -30,15 +30,40 @@ const PORT = 3000;
 const MONGO_URL = "mongodb+srv://ars:663663@blogapp.mbksvib.mongodb.net/";
 
 //routes
-app.get("/blogs", async (req, res) => {
+app.get("/me", passport.authenticate("local"), (req, res) => {
+  res.send(req.user._id);
+});
+app.get("/blogs", passport.authenticate("local"), async (req, res) => {
   const blogs = await Blog.find({});
   res.send(blogs);
+});
+
+app.post("/blogs", passport.authenticate("local"), async (req, res) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const { title, description } = req.body;
+
+    const newBlog = new Blog({
+      title,
+      description,
+      author: req.user,
+    });
+
+    const savedBlog = await newBlog.save();
+
+    res.status(201).json(savedBlog);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
 //->registation
 app.post("/register", async (req, res, done) => {
   const user = await User.findOne({ username: req.body.username });
-  console.log(user);
   if (user) {
     res.send({ message: "Username Exists already" }).status(403);
   }
@@ -60,12 +85,9 @@ app.post("/logout", (req, res) => {
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     const user = await User.findOne({ username: username });
-
     if (!user) {
       return done(null, false, { message: "Incorrect username" });
     }
-
-    console.log(user);
     return done(null, user);
   })
 );
