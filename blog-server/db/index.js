@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
 const blogSchema = new mongoose.Schema({
   title: String,
   description: String,
+  author: String,
 });
 
 const User = mongoose.model("User", userSchema);
