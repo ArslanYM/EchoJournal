@@ -1,26 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import axios from "axios";
+
 export default function RegisterPage() {
+  const BASE_URL = "http://localhost:3000";
   const navigate = useNavigate();
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleRegisterClick = () => {
-    console.log("Registration form data:", formData);
-  };
-
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
+  const handleRegisterClick = async () => {
+    const response = await axios.post(`${BASE_URL}/register`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: [
+        {
+          username,
+          password,
+        },
+      ],
     });
+    const data = response.data;
+    console.log(data);
   };
-
   return (
     <div className="bg-white">
       <div className="w-1/2  mx-auto my-6 max-w-2xl py-12 sm:py-16 lg:py-20">
@@ -40,8 +43,9 @@ export default function RegisterPage() {
                 type="email"
                 name="email"
                 id="email"
-                onChange={handleChange}
-                value={formData.email}
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
                 autoComplete="email"
                 className="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
                 required
@@ -58,8 +62,9 @@ export default function RegisterPage() {
                 type="password"
                 name="password"
                 id="password"
-                onChange={handleChange}
-                value={formData.password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 autoComplete="new-password"
                 className="mt-1 p-2 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
                 required

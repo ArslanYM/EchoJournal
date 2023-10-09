@@ -63,12 +63,13 @@ app.post("/blogs", passport.authenticate("local"), async (req, res) => {
 
 //->registation
 app.post("/register", async (req, res, done) => {
-  const user = await User.findOne({ username: req.body.username });
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
   if (user) {
-    res.send({ message: "Username Exists already" }).status(403);
-  }
-  if (!user) {
-    User.create({ username: req.body.username, password: req.body.password });
+    res.send({ user: user, message: "Username Exists already" });
+  } else {
+    const newUser = new User({ username, password });
+    await newUser.save();
     res.send({ message: "User Created successfully" });
     done(null, user);
   }
