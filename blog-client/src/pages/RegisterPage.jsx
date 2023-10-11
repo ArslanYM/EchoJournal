@@ -11,18 +11,17 @@ export default function RegisterPage() {
 
   const handleRegisterClick = async () => {
     const response = await axios.post(`${BASE_URL}/register`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: [
-        {
-          username,
-          password,
-        },
-      ],
+      username,
+      password,
     });
+
     const data = response.data;
-    console.log(data);
+    console.log(response);
+    if (response.status === 201) {
+      navigate("/blogs");
+    } else {
+      alert("Try again with different credentials");
+    }
   };
   return (
     <div className="bg-white">

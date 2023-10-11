@@ -66,23 +66,23 @@ app.post("/register", async (req, res, done) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username });
   if (user) {
-    res.send({ user: user, message: "Username Exists already" });
+    res.status(400).json({ message: "Username Exists already" });
   } else {
     const newUser = new User({ username, password });
     await newUser.save();
-    res.send({ message: "User Created successfully" });
+    res.status(201).json({ message: "User Created successfully" });
     done(null, user);
   }
 });
 
 app.post("/login", passport.authenticate("local"), (req, res) => {
-  res.send({ message: "Authenticated" });
+  res.send({ message: "Authenticated", user: req.user });
 });
 app.post("/logout", (req, res) => {
   req.logOut();
 });
 
-//middleware for passport
+//strategy used for passport
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     const user = await User.findOne({ username: username });
