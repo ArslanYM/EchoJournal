@@ -6,6 +6,7 @@ import FeedPage from "./pages/FeedPage";
 import BlogPage from "./pages/BlogPage";
 import MyBlogs from "./pages/MyBLogs";
 import { Header } from "./layout/Header";
+import { CreateBlog } from "./pages/CreateBlog";
 
 // import { Footer } from "./layout/Footer";
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/blogs" element={<FeedPage />} />
           <Route path="/myblogs" element={<MyBlogs />} />
           <Route path="/blog/:blogId" element={<BlogPage />} />
+          <Route path="/create" element={<CreateBlog/>  } />
         </Routes>
       </Router>
     </>

@@ -9,7 +9,7 @@ const navigation = [
     name: "Dicsussions",
     to: "blogs",
   },
-  { name: "More", to: "" },
+  { name: "Create", to: "create" },
 ];
 export const Header = () => {
   const navigate = useNavigate();
@@ -60,12 +60,15 @@ export const Header = () => {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
+            <button
+            onClick={()=>{
+              navigate("/login")
+            }}
               href="#"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
               Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+            </button>
           </div>
         </nav>
         <Dialog

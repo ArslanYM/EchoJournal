@@ -20,9 +20,9 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="bg-white">
-      <div className="mx-auto my-6 w-1/2 max-w-2xl py-12 sm:py-16 lg:py-20">
-        <div className="bg-white shadow-lg px-4 py-5 sm:rounded-lg sm:p-6">
+    <div className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0 mx-auto">
+      <div className="max-w-md mx-auto">
+        <div className="bg-white shadow-lg  py-5 sm:rounded-lg sm:p-6 px-8 pt-6 pb-8 mb-4">
           <h2 className="text-2xl font-semibold text-gray-900 mb-6">Log In</h2>
           <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6">
