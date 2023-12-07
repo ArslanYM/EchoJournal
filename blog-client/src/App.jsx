@@ -7,23 +7,25 @@ import BlogPage from "./pages/BlogPage";
 import MyBlogs from "./pages/MyBLogs";
 import { Header } from "./layout/Header";
 import { CreateBlog } from "./pages/CreateBlog";
-
+import { RecoilRoot } from "recoil";
 // import { Footer } from "./layout/Footer";
 function App() {
   return (
     <>
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/blogs" element={<FeedPage />} />
-          <Route path="/myblogs" element={<MyBlogs />} />
-          <Route path="/blog/:blogId" element={<BlogPage />} />
-          <Route path="/create" element={<CreateBlog/>  } />
-        </Routes>
-      </Router>
+      <RecoilRoot>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/blogs" element={<FeedPage />} />
+            <Route path="/myblogs" element={<MyBlogs />} />
+            <Route path="/blog/:blogId" element={<BlogPage />} />
+            <Route path="/create" element={<CreateBlog />} />
+          </Routes>
+        </Router>
+      </RecoilRoot>
     </>
   );
 }
