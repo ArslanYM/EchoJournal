@@ -8,7 +8,7 @@ import MyBlogs from "./pages/MyBLogs";
 import { Header } from "./layout/Header";
 import { CreateBlog } from "./pages/CreateBlog";
 import { RecoilRoot } from "recoil";
-// import { Footer } from "./layout/Footer";
+import { Footer } from "./layout/Footer";
 function App() {
   return (
     <>
@@ -24,6 +24,7 @@ function App() {
             <Route path="/blog/:blogId" element={<BlogPage />} />
             <Route path="/create" element={<CreateBlog />} />
           </Routes>
+          <Footer/>
         </Router>
       </RecoilRoot>
     </>
