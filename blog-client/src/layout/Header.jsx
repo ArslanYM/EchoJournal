@@ -62,12 +62,12 @@ export const Header = () => {
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <button
             onClick={()=>{
-              navigate("/login")
+              navigate("/register")
             }}
               href="#"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              Log in <span aria-hidden="true">&rarr;</span>
+              Register Now <span aria-hidden="true">&rarr;</span>
             </button>
           </div>
         </nav>
@@ -116,12 +116,12 @@ export const Header = () => {
                 <div className="py-6">
                   <a
                     onClick={() => {
-                      navigate("/login");
+                      navigate("/register");
                       setMobileMenuOpen(false);
                     }}
                     className="cursor-pointer  -mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
-                    Log in
+                   Register
                   </a>
                 </div>
               </div>
